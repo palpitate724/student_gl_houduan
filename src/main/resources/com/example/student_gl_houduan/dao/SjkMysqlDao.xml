@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.student_gl_houduan.dao.SjkMysqlDao">
+
+    <!-- 登录查询-->
+    <select id="login" resultType="com.example.student_gl_houduan.model.UserStu">
+        select * from student_gl_name_password
+        <where>
+            <if test="userstu.sid!=null and userstu.spassword!=null">
+                sid=#{userstu.sid} and spassword=#{userstu.spassword} and sdelect=0
+            </if>
+            <if test="userstu.spassword==null">
+                sid=#{userstu.sid} and sdelect=0
+            </if>
+        </where>
+    </select>
+
+    <!--注册_数据写入-->
+    <insert id="signup">
+        insert into student_gl_name_password (sid,sname,spassword,sjiaose)
+        values(#{userstu.sid},#{userstu.sname},#{userstu.spassword},#{userstu.sjiaose})
+    </insert>
+
+    <!--学生信息查询-->
+    <select id="stuSelect" resultType="com.example.student_gl_houduan.model.UserStuSelect">
+        select * from student_gl_sid
+        <where>
+            <if test="userstuselect.sid!=null and userstuselect.sid!=''">
+                sid=#{userstuselect.sid}
+            </if>
+            <if test="userstuselect.sname!=null and userstuselect.sname!=''">
+                AND sname= #{userstuselect.sname}
+            </if>
+            <if test="userstuselect.sage!=null and userstuselect.sage!=''">
+                AND sage= #{userstuselect.sage}
+            </if>
+            <if test="userstuselect.ssex!=null and userstuselect.ssex!=''">
+                AND ssex= #{userstuselect.ssex}
+            </if>
+            <if test="userstuselect.ssion!=null and userstuselect.ssion!=''">
+                AND ssion= #{userstuselect.ssion}
+            </if>
+            AND sdelect=0
+        </where>
+    </select>
+
+    <!--学生信息添加-->
+    <insert id="studentInto">
+        insert into student_gl_sid (sid,sname,sage,ssex,ssion)
+        values(#{userstuinto.sid},#{userstuinto.sname},#{userstuinto.sage},#{userstuinto.ssex},#{userstuinto.ssion})
+    </insert>
+
+</mapper>
