@@ -1,0 +1,8 @@
+com\example\student_gl_houduan\model\UserStuSelect.class
+com\example\student_gl_houduan\service\LoginSignupSer.class
+com\example\student_gl_houduan\controller\LoginSignupCon.class
+com\example\student_gl_houduan\dao\SjkMysqlDao.class
+com\example\student_gl_houduan\StudentGlHouduanApplication.class
+com\example\student_gl_houduan\model\UserFanKui.class
+com\example\student_gl_houduan\model\UserStuInto.class
+com\example\student_gl_houduan\model\UserStu.class

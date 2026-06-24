@@ -27,6 +27,7 @@ public class LoginSignupSer {
 
         userstu = sjkMysqlDao.login(userstu);
         if (userstu!=null){
+            System.out.println("login yes!");
             return new UserFanKui(200,userstu);
         }
         else{
