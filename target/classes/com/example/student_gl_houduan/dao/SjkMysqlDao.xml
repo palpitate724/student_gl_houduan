@@ -24,23 +24,23 @@
     </insert>
 
     <!--学生信息查询-->
-    <select id="stuSelect" resultType="com.example.student_gl_houduan.model.UserStuSelect">
+    <select id="stuSelect" resultType="com.example.student_gl_houduan.model.UserStuInto">
         select * from student_gl_sid
         <where>
-            <if test="userstuselect.sid!=null and userstuselect.sid!=''">
-                sid=#{userstuselect.sid}
+            <if test="userstuinto.sid!=null and userstuinto.sid!=''">
+                sid=#{userstuinto.sid}
             </if>
-            <if test="userstuselect.sname!=null and userstuselect.sname!=''">
-                AND sname= #{userstuselect.sname}
+            <if test="userstuinto.sname!=null and userstuinto.sname!=''">
+                AND sname= #{userstuinto.sname}
             </if>
-            <if test="userstuselect.sage!=null and userstuselect.sage!=''">
-                AND sage= #{userstuselect.sage}
+            <if test="userstuinto.sage!=null and userstuinto.sage!=''">
+                AND sage= #{userstuinto.sage}
             </if>
-            <if test="userstuselect.ssex!=null and userstuselect.ssex!=''">
-                AND ssex= #{userstuselect.ssex}
+            <if test="userstuinto.ssex!=null and userstuinto.ssex!=''">
+                AND ssex= #{userstuinto.ssex}
             </if>
-            <if test="userstuselect.ssion!=null and userstuselect.ssion!=''">
-                AND ssion= #{userstuselect.ssion}
+            <if test="userstuinto.ssion!=null and userstuinto.ssion!=''">
+                AND ssion= #{userstuinto.ssion}
             </if>
             AND sdelect=0
         </where>
@@ -51,5 +51,36 @@
         insert into student_gl_sid (sid,sname,sage,ssex,ssion)
         values(#{userstuinto.sid},#{userstuinto.sname},#{userstuinto.sage},#{userstuinto.ssex},#{userstuinto.ssion})
     </insert>
+
+    <!--学生信息修改-->
+    <update id="studentUpdate">
+        update student_gl_sid
+        <set>
+            <if test="userstuinto.sname!=null">
+                sname=#{userstuinto.sname},
+            </if>
+            <if test="userstuinto.sage!=null">
+                sage=#{userstuinto.sage},
+            </if>
+            <if test="userstuinto.ssex!=null">
+                ssex=#{userstuinto.ssex},
+            </if>
+            <if test="userstuinto.ssion!=null">
+                ssion=#{userstuinto.ssion},
+            </if>
+        </set>
+        <where>
+            sid=#{userstuinto.sid}
+        </where>
+    </update>
+
+    <!--学生信息删除--><!-- 逻辑删除/软删除-->
+    <update id="studentDelete">
+        update student_gl_sid
+        set sdelect=1
+        <where>
+            sid=#{userstuinto.sid}
+        </where>
+    </update>
 
 </mapper>

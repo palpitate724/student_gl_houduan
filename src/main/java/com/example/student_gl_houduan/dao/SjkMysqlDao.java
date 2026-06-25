@@ -2,7 +2,6 @@ package com.example.student_gl_houduan.dao;
 
 import com.example.student_gl_houduan.model.UserStu;
 import com.example.student_gl_houduan.model.UserStuInto;
-import com.example.student_gl_houduan.model.UserStuSelect;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -17,6 +16,10 @@ public interface SjkMysqlDao {
     //学生信息添加
     int studentInto(@Param("userstuinto") UserStuInto userstuinto);
     //查询学生信息
-    List<UserStuSelect> stuSelect(@Param("userstuselect") UserStuSelect userstuselect);
+    List<UserStuInto> stuSelect(@Param("userstuinto") UserStuInto userstuinto);
+    //学生信息修改
+    int studentUpdate(@Param("userstuinto") UserStuInto userstuinto);
+    //学生信息删除
+    int studentDelete(@Param("userstuinto") UserStuInto userstuinto);
 
 }
