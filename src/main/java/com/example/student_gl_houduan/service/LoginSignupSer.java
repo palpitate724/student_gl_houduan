@@ -60,6 +60,12 @@ public class LoginSignupSer {
         if (userstuselects!=null){return new UserFanKui(200,userstuselects);}
         else{return new UserFanKui(409,null);}
     }
+    //软删除查询
+    public UserFanKui stuSelectDelSer(){
+        List<UserStuInto> userstuselects=sjkMysqlDao.stuSelectDel();
+        if (userstuselects!=null) return new UserFanKui(200,userstuselects);
+        else return new UserFanKui(409,null);
+    }
 
     //修改
     public UserFanKui studentUpdateSer(UserStuInto userstuinto){
@@ -72,6 +78,12 @@ public class LoginSignupSer {
     public UserFanKui studentDeleteSer(UserStuInto userstuinto){
         int delete=sjkMysqlDao.studentDelete(userstuinto);
         if (delete>0)return new UserFanKui(200,null);
+        else return new UserFanKui(500,null);
+    }
+    //恢复
+    public UserFanKui studentDelHuiFuSer(UserStuInto userstuinto){
+        int huiFu=sjkMysqlDao.studentDelHuiFu(userstuinto);
+        if (huiFu>0)return new UserFanKui(200,null);
         else return new UserFanKui(500,null);
     }
 }
