@@ -53,6 +53,11 @@
             AND sdelect=0
         </where>
     </select>
+    <!--软删除学生信息查询-->
+    <select id="stuSelectDel" resultType="com.example.student_gl_houduan.model.UserStuInto">
+        select * from student_gl_sid
+        where sdelect=1
+    </select>
 
 
     <!--学生信息添加-->

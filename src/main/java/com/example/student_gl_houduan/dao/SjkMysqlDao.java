@@ -29,6 +29,10 @@ public interface SjkMysqlDao {
 
     //查询学生信息
     List<UserStuInto> stuSelect(@Param("userstuinto") UserStuInto userstuinto);
+    //查询学生信息_软删除
+    List<UserStuInto> stuSelectDel();
+
+
     //学生信息修改
     int studentUpdate(@Param("userstuinto") UserStuInto userstuinto);
     //学生信息删除
