@@ -5,6 +5,4 @@ public class UserStu {
     public String sname;
     public String spassword;
     public Integer sjiaose;
-
-
 }
