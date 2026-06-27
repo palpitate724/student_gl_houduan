@@ -4,6 +4,7 @@
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.student_gl_houduan.dao.SjkMysqlDao">
 
+
     <!-- 登录查询-->
     <select id="login" resultType="com.example.student_gl_houduan.model.UserStu">
         select * from student_gl_name_password
@@ -17,11 +18,18 @@
         </where>
     </select>
 
+
     <!--注册_数据写入-->
     <insert id="signup">
         insert into student_gl_name_password (sid,sname,spassword,sjiaose)
         values(#{userstu.sid},#{userstu.sname},#{userstu.spassword},#{userstu.sjiaose})
     </insert>
+    <!--注册_验证-->
+    <select id="signupyz">
+        select * from student_gl_name_password
+        where sid=#{userstu.sid
+    </select>
+
 
     <!--学生信息查询-->
     <select id="stuSelect" resultType="com.example.student_gl_houduan.model.UserStuInto">
@@ -46,11 +54,23 @@
         </where>
     </select>
 
+
     <!--学生信息添加-->
     <insert id="studentInto">
         insert into student_gl_sid (sid,sname,sage,ssex,ssion)
         values(#{userstuinto.sid},#{userstuinto.sname},#{userstuinto.sage},#{userstuinto.ssex},#{userstuinto.ssion})
     </insert>
+    <!--学生信息添加__验证是否软删除-->
+    <select id="studentIntoDel" resultType="int">
+        select count(*) from student_gl_sid
+        where sid=#{userstuinto.sid} and sdelect=1
+    </select>
+    <!--学生信息添加__验证是否已存在-->
+    <select id="studentIntoYz" resultType="int">
+        select count(*) from student_gl_sid
+        where sid= #{userstuinto.sid} and sdelect=0
+    </select>
+
 
     <!--学生信息修改-->
     <update id="studentUpdate">
@@ -74,13 +94,18 @@
         </where>
     </update>
 
+
     <!--学生信息删除--><!-- 逻辑删除/软删除-->
     <update id="studentDelete">
         update student_gl_sid
         set sdelect=1
-        <where>
-            sid=#{userstuinto.sid}
-        </where>
+        where sid=#{userstuinto.sid}
+    </update>
+    <!--学生信息恢复-->
+    <update id="studentDelHuiFu">
+        update student_gl_sid
+        set sdelect=0
+        where sid= #{userstuinto.sid}
     </update>
 
 </mapper>

@@ -32,8 +32,8 @@ public class LoginSignupSer {
 
     //注册
     public UserFanKui signupSer(UserStu userstu){
-        boolean yz=sjkMysqlDao.login(userstu)!=null;
-        if(yz) return new UserFanKui(409,null);//用户已存在
+        int yz=sjkMysqlDao.signupyz(userstu);
+        if( yz==0 ) return new UserFanKui(409,null);//用户已存在
         int st= sjkMysqlDao.signup(userstu);
         if(st==1)return new UserFanKui(200,null);//注册成功
         else return new UserFanKui(500,null);//注册失败
@@ -41,6 +41,14 @@ public class LoginSignupSer {
 
     //学生信息添加
     public UserFanKui studentIntoSer(UserStuInto userstuinto){
+        int del=sjkMysqlDao.studentIntoDel(userstuinto);
+        if (del>0){
+            int hf = sjkMysqlDao.studentDelHuiFu(userstuinto);
+            if (hf>0) return new UserFanKui(200,null);
+            else return new UserFanKui(500,null);
+        }
+        int cz=sjkMysqlDao.studentIntoYz(userstuinto);
+        if (cz>0) return new UserFanKui(409,null);
         int into=sjkMysqlDao.studentInto(userstuinto);
         if (into>0)return new UserFanKui(200,null);
         else return new UserFanKui(500,null);
