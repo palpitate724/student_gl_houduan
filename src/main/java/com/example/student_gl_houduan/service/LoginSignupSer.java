@@ -107,6 +107,18 @@ public class LoginSignupSer {
             return new UserFanKui(409, null);
         }
     }
+    //分页查询
+    public UserFanKui stuSelFenSer(int ts,int shul){
+        List<UserStuInto> userstuselects=sjkMysqlDao.stuSelFen((ts-1)*shul,shul);
+        if (userstuselects!=null) {
+            log.info("分页查询成功");
+            return new UserFanKui(200, userstuselects);
+        }
+        else {
+            log.info("分页查询失败，无信息");
+            return new UserFanKui(409, null);
+        }
+    }
 
     //修改
     public UserFanKui studentUpdateSer(UserStuInto userstuinto){
@@ -144,5 +156,13 @@ public class LoginSignupSer {
             log.info("{} 恢复失败，服务器原因",userstuinto.sid);
             return new UserFanKui(500, null);
         }
+    }
+
+
+    //查询学生信息记录数量
+    public UserFanKui stuCountSer(){
+        int count=sjkMysqlDao.stuCount();
+        return new UserFanKui(200,count);
+
     }
 }

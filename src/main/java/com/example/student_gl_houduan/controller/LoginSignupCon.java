@@ -42,6 +42,10 @@ public class LoginSignupCon {
     public UserFanKui stuSelectDelCon(){
         return loginSignupSer.stuSelectDelSer();
     }
+    @GetMapping("/stuselfen")//分页查询
+    public UserFanKui stuselFenCon(@RequestParam int ts,int shul){
+        return loginSignupSer.stuSelFenSer(ts,shul);
+    }
 
 
     @RequestMapping("/studentupdate")//修改
@@ -59,4 +63,9 @@ public class LoginSignupCon {
         return loginSignupSer.studentDelHuiFuSer(userstuinto);
     }
 
+
+    @RequestMapping("/stucount")//查询学生数量
+    public UserFanKui stuCountCon(){
+        return loginSignupSer.stuCountSer();
+    }
 }

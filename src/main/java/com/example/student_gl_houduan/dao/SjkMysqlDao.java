@@ -31,6 +31,8 @@ public interface SjkMysqlDao {
     List<UserStuInto> stuSelect(@Param("userstuinto") UserStuInto userstuinto);
     //查询学生信息_软删除
     List<UserStuInto> stuSelectDel();
+    //分页查询
+    List<UserStuInto> stuSelFen(@Param("ts") int ts,@Param("shul") int shul);
 
 
     //学生信息修改
@@ -39,5 +41,9 @@ public interface SjkMysqlDao {
     int studentDelete(@Param("userstuinto") UserStuInto userstuinto);
     //学生信息恢复
     int studentDelHuiFu(@Param("userstuinto") UserStuInto userstuinto);
+
+
+    //查询学生信息记录数量
+    int stuCount();
 
 }

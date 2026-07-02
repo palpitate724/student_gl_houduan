@@ -58,6 +58,11 @@
         select * from student_gl_sid
         where sdelect=1
     </select>
+    <!-- 分页查询-->
+    <select id="stuSelFen" resultType="com.example.student_gl_houduan.model.UserStuInto">
+        select * from student_gl_sid limit #{ts},#{shul}
+    </select>
+
 
 
     <!--学生信息添加-->
@@ -112,5 +117,11 @@
         set sdelect=0
         where sid= #{userstuinto.sid}
     </update>
+
+
+    <!-- 计算学生信息数量-->
+    <select id="stuCount" resultType="int">
+        select count(*) from student_gl_sid
+    </select>
 
 </mapper>
